@@ -1,0 +1,8 @@
+{
+  "name": "github-trends-rss",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/flyhighair/github-trends-rss.git",
+  "author": "hakshu <flyhighup.air25@gmail.com>",
+  "license": "MIT"
+}
