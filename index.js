@@ -8,8 +8,9 @@ const { IncomingWebhook } = require("@slack/webhook");
  ** @param {object} context The event metadata.
  **/
 exports.githubTrendsNotify = (event, context) => {
-  const term = event.term;
-  const language = event.language;
+  const { term, language } = JSON.parse(
+    Buffer.from(event.data, "base64").toString()
+  );
   const url = process.env.SLACK_WEBHOOK_URL;
   const webhook = new IncomingWebhook(url);
 
