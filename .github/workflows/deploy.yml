@@ -1,0 +1,24 @@
+name: Deploy to GCP Cloud Functions
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions-hub/gcloud@master
+      env:
+        PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
+        APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_CREDENTIALS }}
+        FUNCTION_NAME: github-trends-notify
+        REGION: asia-northeast1
+        TOPIC: github-trends
+        RUNTIME: nodejs10
+      with:
+        args: functions deploy $FUNCTION_NAME --region $REGION --trigger-topic $TOPIC --runtime $RUNTIME
+
