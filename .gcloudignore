@@ -18,4 +18,5 @@ node_modules
 LICENSE
 README.md
 .node-version
-
+renovate.json
+.github
