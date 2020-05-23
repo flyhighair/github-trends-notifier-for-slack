@@ -3,7 +3,6 @@ name: Deploy to GCP Cloud Functions
 on:
   push:
     branches:
-      - feature/add-deploy-action
       - master
 
 jobs:
