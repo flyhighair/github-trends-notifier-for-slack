@@ -7,6 +7,11 @@ terraform {
       version = "~> 3"
     }
   }
+
+  backend "gcs" {
+    bucket = "tfstate-bucket20210121"
+    prefix = "github-trends-notifier-for-slack"
+  }
 }
 
 provider "google" {
