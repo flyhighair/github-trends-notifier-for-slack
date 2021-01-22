@@ -1,1 +1,3 @@
 export GOOGLE_APPLICATION_CREDENTIALS=path
+export TF_VAR_slack_webhook_url=url
+export TF_VAR_cloud_function_account_email=accountmail
