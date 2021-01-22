@@ -20,3 +20,5 @@ README.md
 .node-version
 renovate.json
 .github
+terraform
+.envrc*
