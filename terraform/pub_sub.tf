@@ -1,8 +1,8 @@
 variable "pubsub_subscription_push_endpoint" {}
 
 resource "google_pubsub_topic" "github-trends-pubsub-topic" {
-  name    = "github-trends"
-  labels  = {}
+  name   = "github-trends"
+  labels = {}
   timeouts {}
 }
 
@@ -16,8 +16,8 @@ resource "google_pubsub_subscription" "github-trends-pubsub-subscription" {
   topic                      = "projects/hakshu-private-project/topics/github-trends"
 
   push_config {
-      attributes    = {}
-      push_endpoint = var.pubsub_subscription_push_endpoint
+    attributes    = {}
+    push_endpoint = var.pubsub_subscription_push_endpoint
   }
 
   timeouts {}

@@ -4,9 +4,9 @@ resource "google_cloud_scheduler_job" "scheduler" {
   time_zone = "Asia/Tokyo"
 
   pubsub_target {
-      attributes = {}
-      data       = base64encode("{\"term\": \"Weekly\", \"language\": \"TypeScript\"}")
-      topic_name = google_pubsub_topic.github-trends-pubsub-topic.id
+    attributes = {}
+    data       = base64encode("{\"term\": \"Weekly\", \"language\": \"TypeScript\"}")
+    topic_name = google_pubsub_topic.github-trends-pubsub-topic.id
   }
 
   timeouts {}
