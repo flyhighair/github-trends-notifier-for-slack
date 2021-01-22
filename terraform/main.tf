@@ -14,7 +14,15 @@ terraform {
   }
 }
 
+variable "gcp_project" {
+  default = "hakshu-private-project"
+}
+
+variable "project_name" {
+  default = "github-trends"
+}
+
 provider "google" {
-  project = "hakshu-private-project"
+  project = var.gcp_project
   region  = "asia-northeast1"
 }

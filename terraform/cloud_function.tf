@@ -2,7 +2,7 @@ variable "slack_webhook_url" {}
 variable "cloud_function_account_email" {}
 
 resource "google_cloudfunctions_function" "notifier-function" {
-  name                = "github-trends-notify"
+  name                = "${var.project_name}-notify"
   available_memory_mb = 256
   entry_point         = "githubTrendsNotify"
   environment_variables = {
@@ -18,7 +18,7 @@ resource "google_cloudfunctions_function" "notifier-function" {
 
   event_trigger {
     event_type = "google.pubsub.topic.publish"
-    resource   = "projects/hakshu-private-project/topics/github-trends"
+    resource   = google_pubsub_topic.github-trends-pubsub-topic.id
 
     failure_policy {
       retry = false

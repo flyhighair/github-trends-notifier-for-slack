@@ -1,5 +1,5 @@
 resource "google_cloud_scheduler_job" "scheduler" {
-  name      = "github-trends-job"
+  name      = "${var.project_name}-job"
   schedule  = "0  9 * * 1"
   time_zone = "Asia/Tokyo"
 
