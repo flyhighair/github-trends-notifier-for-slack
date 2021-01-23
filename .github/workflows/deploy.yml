@@ -1,9 +1,8 @@
 name: Deploy to GCP Cloud Functions
 
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
   deploy:
