@@ -1,8 +1,25 @@
 import trending from 'trending-github';
 import { IncomingWebhook } from '@slack/webhook';
+import { MessageAttachment, SectionBlock } from '@slack/types'
 
 interface EventPayload {
   data: string;
+}
+
+interface Repository {
+  author: string,
+  name: string,
+  href: string,
+  description: string | null,
+  language: string,
+  stars: number,
+  forks: number,
+  starsInPeriod: number | null,
+};
+
+interface RequestParams {
+  term: string,
+  language: string
 }
 
 /**
@@ -12,11 +29,11 @@ interface EventPayload {
  ** @param {object} context The event metadata.
  **/
 exports.githubTrendsNotify = (event: EventPayload, _: Object) => {
-  const { term, language }: { term: string, language: string} = JSON.parse(
+  const { term, language }: RequestParams = JSON.parse(
     Buffer.from(event.data, "base64").toString()
   );
   const url = process.env.SLACK_WEBHOOK_URL;
-  if(!url) {
+  if (!url) {
     throw new Error('Not set env SLACK_WEBHOOK_URL');
   }
 
@@ -24,7 +41,7 @@ exports.githubTrendsNotify = (event: EventPayload, _: Object) => {
 
   return trending(term, language)
     .then(async (res) => {
-      const repos: Array<any> = res as Array<any>;
+      const repos = res as Repository[];
       const attachments = repos.map((repo) => buildRepoAttachment(repo));
       const blocks = buildMainBlockMessage(term, language);
       await webhook.send({ blocks, attachments });
@@ -32,7 +49,7 @@ exports.githubTrendsNotify = (event: EventPayload, _: Object) => {
     .catch((err: Error) => console.error(err));
 };
 
-function buildMainBlockMessage(term: string, language: string) {
+function buildMainBlockMessage(term: string, language: string): SectionBlock[] {
   return [
     {
       type: "section",
@@ -44,7 +61,7 @@ function buildMainBlockMessage(term: string, language: string) {
   ];
 }
 
-function buildRepoAttachment(repo: any) {
+function buildRepoAttachment(repo: any): MessageAttachment {
   const blocks = buildBaseAttachmentBlock(repo);
   if (repo.description) {
     blocks.push({
@@ -58,7 +75,7 @@ function buildRepoAttachment(repo: any) {
   return { blocks };
 }
 
-function buildBaseAttachmentBlock(repo: any) {
+function buildBaseAttachmentBlock(repo: any): SectionBlock[] {
   return [
     {
       type: "section",

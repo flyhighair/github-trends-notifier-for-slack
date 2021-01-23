@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@slack/types/-/types-1.6.0.tgz#7b5f08db824d9853cbf6c2de1c08865ba6ce346f"
   integrity sha512-SrrAD/ZxDN4szQ35V/mY2TvKSyGsUWP8def1C8NMg9AvdYG0VyaL5f+Dd6jw8STosMFXd3zqjekMowT9LB9/IQ==
 
+"@slack/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@slack/types/-/types-2.0.0.tgz#7b938ab576cd1d6c9ff9ad67a96f8058d101af10"
+  integrity sha512-Nu4jWC39mDY5egAX4oElwOypdu8Cx9tmR7bo3ghaHYaC7mkKM1+b+soanW5s2ssu4yOLxMdFExMh6wlR34B6CA==
+
 "@slack/webhook@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@slack/webhook/-/webhook-6.0.0.tgz#844593c1e864a966e549f60bb640586628f3c1c4"
