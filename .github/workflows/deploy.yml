@@ -18,7 +18,7 @@ jobs:
         FUNCTION_NAME: github-trends-notify
         REGION: asia-northeast1
         TOPIC: github-trends
-        RUNTIME: nodejs10
+        RUNTIME: nodejs12
       with:
         args: functions deploy $FUNCTION_NAME --region $REGION --trigger-topic $TOPIC --runtime $RUNTIME
 
