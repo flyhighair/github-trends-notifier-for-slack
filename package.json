@@ -6,7 +6,7 @@
   "author": "hakshu <flyhighup.air25@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@slack/webhook": "^5.0.3",
+    "@slack/webhook": "^6.0.0",
     "trending-github": "^2.0.3"
   }
 }
