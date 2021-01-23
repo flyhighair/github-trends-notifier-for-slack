@@ -12,7 +12,7 @@ resource "google_cloudfunctions_function" "notifier-function" {
   labels = {
     "deployment-tool" = "cli-gcloud"
   }
-  runtime               = "nodejs10"
+  runtime               = "nodejs12"
   service_account_email = var.cloud_function_account_email
   timeout               = 120
 
