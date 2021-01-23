@@ -29,6 +29,7 @@ jobs:
           ${{ runner.os }}-yarn-
     - run: yarn
     - run: yarn build
+    - run: ls -la
     - uses: actions-hub/gcloud@master
       env:
         PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
