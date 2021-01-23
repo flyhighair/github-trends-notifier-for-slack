@@ -22,3 +22,6 @@ renovate.json
 .github
 terraform
 .envrc*
+src
+tsconfig.json
+!index.js
