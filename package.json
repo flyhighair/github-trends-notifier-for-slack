@@ -5,6 +5,10 @@
   "repository": "https://github.com/flyhighair/github-trends-rss.git",
   "author": "hakshu <flyhighup.air25@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "prebuild": "tsc --noEmit",
+    "build": "esbuild src/*.ts --bundle --platform=node --target=node12.20 --outfile=index.js"
+  },
   "dependencies": {
     "@slack/webhook": "^6.0.0",
     "trending-github": "^2.0.3"
