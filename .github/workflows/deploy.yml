@@ -8,9 +8,8 @@ on:
       - 'package.json'
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -29,11 +28,24 @@ jobs:
           ${{ runner.os }}-yarn-
     - run: yarn
     - run: yarn build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: index.js
+        path: index.js
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@master
       with:
         project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
         service_account_key: ${{ secrets.GCLOUD_CREDENTIALS }}
+    - uses: actions/download-artifact@v2
+      with:
+        name: index.js
+    - run: ls -la
     - name: Deploy cloud functions
       run: gcloud functions deploy github-trends-notify --region asia-northeast1 --trigger-topic github-trends --runtime nodejs12
 
