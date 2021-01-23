@@ -33,8 +33,7 @@ jobs:
       uses: google-github-actions/setup-gcloud@master
       with:
         project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
-        export_default_credentials: true
-        credentials_file_path: ${{ secrets.GCLOUD_CREDENTIALS }}
+        service_account_key: ${{ secrets.GCLOUD_CREDENTIALS }}
     - name: Deploy cloud functions
       run: gcloud functions deploy github-trends-notify --region asia-northeast1 --trigger-topic github-trends --runtime nodejs12
 
