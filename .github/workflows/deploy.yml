@@ -32,20 +32,3 @@ jobs:
       with:
         name: index.js
         path: index.js
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup gcloud
-      uses: google-github-actions/setup-gcloud@master
-      with:
-        project_id: ${{ secrets.GCLOUD_PROJECT_ID }}
-        service_account_key: ${{ secrets.GCLOUD_CREDENTIALS }}
-    - uses: actions/download-artifact@v2
-      with:
-        name: index.js
-    - name: Deploy cloud functions
-      run: gcloud functions deploy github-trends-notify --region asia-northeast1 --trigger-topic github-trends --runtime nodejs12
-
